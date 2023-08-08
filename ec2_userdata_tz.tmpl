@@ -51,12 +51,12 @@ ufw enable
 useradd -s /bin/bash -m -G sudo $LPROJECT
 export USERID=$(id -u $LPROJECT)
 export GROUPID=$(id -g $LPROJECT)
-mkdir -p /opt/$LPROJECT/.ssh
+mkdir -p /opt/$LPROJECT
 su $LPROJECT -c 'ln -s /opt/$LPROJECT/ /home/$LPROJECT/$LPROJECT'
 if [ -f /.PROJECT ]; then
   echo "export PROJECT=$${PROJECT}" >> /home/$LPROJECT/.bashrc
 fi
-
+mkdir -p /home/$LPROJECT/.ssh
 chown -R $LPROJECT:$LPROJECT /home/$LPROJECT/.ssh /home/$LPROJECT
 chmod 700 /home/$LPROJECT/.ssh
 chown -R $LPROJECT:$LPROJECT /opt/$LPROJECT/
