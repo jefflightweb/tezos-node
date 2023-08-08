@@ -12,11 +12,7 @@ systemctl restart sshd
 
 # Install Packages
 apt-get update -y
-apt-get install -y fail2ban
-apt-get install -y automake
-apt-get install -y pkg-config
-apt-get install -y bc
-apt-get install -y awscli
+apt-get install -y fail2ban automake jq pkg-config bc awscli
 apt-get -fmuy dist-upgrade
 apt-get install -y sysstat
 sed -i 's/ENABLED="false"/ENABLED="true"/' /etc/default/sysstat
@@ -55,7 +51,7 @@ ufw enable
 useradd -s /bin/bash -m -G sudo $LPROJECT
 export USERID=$(id -u $LPROJECT)
 export GROUPID=$(id -g $LPROJECT)
-mkdir /opt/$LPROJECT
+mkdir -p /opt/$LPROJECT/.ssh
 su $LPROJECT -c 'ln -s /opt/$LPROJECT/ /home/$LPROJECT/$LPROJECT'
 if [ -f /.PROJECT ]; then
   echo "export PROJECT=$${PROJECT}" >> /home/$LPROJECT/.bashrc
@@ -63,8 +59,6 @@ fi
 
 chown -R $LPROJECT:$LPROJECT /home/$LPROJECT/.ssh /home/$LPROJECT
 chmod 700 /home/$LPROJECT/.ssh
-chmod -R 600 /home/$LPROJECT/.ssh/*
-
 chown -R $LPROJECT:$LPROJECT /opt/$LPROJECT/
 sudo add-apt-repository -y ppa:serokell/tezos && sudo apt-get update
 sudo apt-get install -y tezos-client

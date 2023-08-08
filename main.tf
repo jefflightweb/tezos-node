@@ -37,7 +37,7 @@ variable "public_key_file" {
   description = "Path to SSH public key file"
 }
 
-data "local_file" "ssh-public-key" {
+data "local_file" "ssh_public_key" {
   filename = var.public_key_file
 }
 
@@ -61,7 +61,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_key_pair" "ec2_key" {
   key_name   = "ec2-${lower(var.project)}-tz"
-  public_key = data.local_file.ssh-public-key.content
+  public_key = data.local_file.ssh_public_key.content
 #  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFYH+R2Dbr7a/d7dD535fEgxS6AK6JLg7kIm4l1XSx0qWrGqhAVCRAE+GDqscgeUIDqWPRJaqqeFyEnn1O7vppEVlGITYVb9Jjy1OsFPrAXUOvp71l7V6cd8lEqAASOIQjjYA6vYY+WobC9tf13D2cPPpqK4bkzmAslnFPl9RecQrfVMiqKbHHpEKa1QCvlktL3gLBo2/o7BdjTLTzVKYAKD8O1bJ3kkRtuvx7lZJpcFnP8uabZxUOXv7AYt/Hle3N2Hk6CAqR6a14FEePdVVQfI4yUiDlBYYSgOGio9BIukBqbgQ5b0dA7EMvU5hmCq8YI5tzT4VWEMDH99lyFDNr lightweb"
 }
 
