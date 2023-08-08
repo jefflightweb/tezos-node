@@ -1,6 +1,7 @@
 # tezos-node Terraform template
 
 Get the latest rolling block hash from https://xtz-shots.io/mainnet/
+Put SSH public key stanza in a text file (e.g. ssh-public-key.txt)
 
 To start stack:
 
