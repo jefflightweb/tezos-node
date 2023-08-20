@@ -12,7 +12,7 @@ systemctl restart sshd
 
 # Install Packages
 apt-get update -y
-apt-get install -y fail2ban automake jq pkg-config bc awscli
+apt-get install -y fail2ban automake jq pkg-config bc awscli python3-pip
 apt-get -fmuy dist-upgrade
 apt-get install -y sysstat
 sed -i 's/ENABLED="false"/ENABLED="true"/' /etc/default/sysstat
